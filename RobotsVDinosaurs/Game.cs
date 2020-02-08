@@ -12,8 +12,11 @@ namespace RobotsVDinosaurs
         //Where I want to run Robots V Dinosaurs
         public void RunTheGame()
         {
-            Weapon newWeapon = new Weapon();
+            Robot newRobot;
+            newRobot = new Robot("chad");
+            newRobot.SearchForWeapon();
         }
-        
+
+ 
     }
 }

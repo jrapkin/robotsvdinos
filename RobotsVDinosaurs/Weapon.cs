@@ -9,27 +9,19 @@ namespace RobotsVDinosaurs
     class Weapon
     {
         //member Variables AKA Class Properties (HAS A)
-        public string weaponType;
-        public int attackPower;
+        public string WeaponType;
+        public int AttackPower;
         
 
         // Constructor (SPAWNER)
-        public Weapon()
+        public Weapon(int attackPower, string weaponType)
         {
-            /*weaponType = UserWeaponSelection();
-            attackPower = SetAttackPower();*/
+            AttackPower = attackPower;
+            WeaponType = weaponType;
         }
         // Member Methods (CAN DO)
 
-        /*private string UserWeaponSelection()
-        {
-        }*/
-
-
-        //a list of weapons
-        List<string> listOfWeapons = new List<string>();
-
-
+        
         
 
     }

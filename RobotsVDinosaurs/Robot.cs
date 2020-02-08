@@ -9,33 +9,40 @@ namespace RobotsVDinosaurs
     class Robot
     {
         //member Variables AKA Class Properties (HAS A)
-        string name;
-        int health;
-        int powerLevel;
-        Weapon weapon;  
+        public string Name;
+        public int Health;
+        public int PowerLevel;
+        Weapon weapon;
+        public int AttackPower;
+        
 
         // Constructor (SPAWNER)
-        public Robot(string name)
+        public Robot(string robotName)
         {
-            this.name = name;
-            health = 100;
-            powerLevel = 100;
-            weapon = new Weapon();
+            Name = robotName;
+            Health = 100;
+            PowerLevel = 100;
+            AttackPower = 5;
 
         }
 
         // Member Methods (CAN DO)
-
-        public string InitializeRobot()
+        public void Equip(Weapon newFoundWeapon)
         {
-          
-            Console.WriteLine("A wild robot named " + name + " has appeared!");
-            Console.WriteLine(name + " is searching for a weapon...");
-            Console.WriteLine(name + " has found a sword, an axe, and a plasma cannon! Which should it choose?");
+            weapon = newFoundWeapon;
+            AttackPower += newFoundWeapon.AttackPower;
+        }
 
-            string selectedWeaponType = Console.ReadLine();
+        // a robot attacks
 
-            return selectedWeaponType;
+        public void Attack()
+        {
+
+        }
+        //and takes damage
+        public void TakeDamage()
+        {
+
         }
     }
 }
