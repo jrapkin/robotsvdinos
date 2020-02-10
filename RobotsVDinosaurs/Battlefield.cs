@@ -10,19 +10,27 @@ namespace RobotsVDinosaurs
     {
 
         //member Variables AKA Class Properties (HAS A)
-        List<Robot> fleet;
+        public List<Robot> Fleet;
+        public List<Dinosaur> Herd;
+        public List<Weapon> Weapons;
         // Constructor (SPAWNER)
         public Battlefield()
         {
-            fleet = new List<Robot>();
-
+            Fleet = new List<Robot>();
+            Herd = new List<Dinosaur>();
+            FillFactionTeam();
         }
         // Member Methods (CAN DO)
         //dinosaurs and robots spawn
         public void SpawnRobot()
         {
             Robot spawnedRobot = new Robot();
-            fleet.Add(spawnedRobot);
+            Fleet.Add(spawnedRobot);
+        }
+        public void SpawnDinosaur()
+        {
+            Dinosaur spawnedDinosaur = new Dinosaur();
+            Herd.Add(spawnedDinosaur);
         }
 
         public void FillFactionTeam()
@@ -30,7 +38,9 @@ namespace RobotsVDinosaurs
             for (int i = 0; i < 3; i++)
             {
                 SpawnRobot();
+                SpawnDinosaur();
             }
         }
+
     }
 }

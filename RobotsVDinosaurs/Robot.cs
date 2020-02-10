@@ -12,25 +12,25 @@ namespace RobotsVDinosaurs
         public string Name;
         public int Health;
         public int PowerLevel;
-        Weapon weapon;
+        public Weapon weapon;
         public int AttackPower;
+        public int WeaponAttackPower;
         
 
         // Constructor (SPAWNER)
-        public Robot(string robotName)
+        public Robot()
         {
-            Name = robotName;
+            Name = "Test Robot";
             Health = 100;
             PowerLevel = 100;
             AttackPower = 5;
-
+            Equip();
         }
 
         // Member Methods (CAN DO)
-        public void Equip(Weapon newFoundWeapon)
+        public void Equip()
         {
-            weapon = newFoundWeapon;
-            AttackPower += newFoundWeapon.AttackPower;
+            weapon =  new Weapon(20);
         }
 
         // a robot attacks
