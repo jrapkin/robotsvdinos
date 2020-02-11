@@ -14,10 +14,10 @@ namespace RobotsVDinosaurs
 
 
         // Constructor (SPAWNER)
-        public Weapon(int attackPower)
+        public Weapon(int attackPower, string weaponType)
         {
             AttackPower = attackPower;
-            // WeaponType = weaponType;
+            WeaponType = weaponType;
         }
 
         // Member Methods (CAN DO)

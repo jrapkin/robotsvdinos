@@ -16,12 +16,12 @@ namespace RobotsVDinosaurs
         string type = "T-Rex";
 
         // Constructor (SPAWNER)
-        public Dinosaur()
+        public Dinosaur(string name)
         {
-            Name = "Test Dino";
+            Name = name;
             Health = 100;
             Energy = 100;
-            AttackPower = 5;
+            AttackPower = 10;
             //type = type;
         } 
 

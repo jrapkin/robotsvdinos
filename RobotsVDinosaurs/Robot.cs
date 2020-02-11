@@ -15,34 +15,28 @@ namespace RobotsVDinosaurs
         public Weapon weapon;
         public int AttackPower;
         public int WeaponAttackPower;
-        
+        public Battlefield Battlefield;
 
         // Constructor (SPAWNER)
-        public Robot()
+        public Robot(string name)
         {
-            Name = "Test Robot";
+            Name = name;
             Health = 100;
             PowerLevel = 100;
-            AttackPower = 5;
-            Equip();
+            AttackPower = 10;
+            WeaponAttackPower = 0;
         }
+
+
 
         // Member Methods (CAN DO)
         public void Equip()
         {
-            weapon =  new Weapon(20);
+            weapon =  new Weapon(0, "");
         }
 
         // a robot attacks
 
-        public void Attack()
-        {
 
-        }
-        //and takes damage
-        public void TakeDamage()
-        {
-
-        }
     }
 }
