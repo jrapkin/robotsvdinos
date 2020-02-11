@@ -14,8 +14,8 @@ namespace RobotsVDinosaurs
         public int PowerLevel;
         public Weapon weapon;
         public int AttackPower;
-        public int WeaponAttackPower;
-        public Battlefield Battlefield;
+        //public int WeaponAttackPower;
+        // public Battlefield Battlefield;
 
         // Constructor (SPAWNER)
         public Robot(string name)
@@ -24,15 +24,16 @@ namespace RobotsVDinosaurs
             Health = 100;
             PowerLevel = 100;
             AttackPower = 10;
-            WeaponAttackPower = 0;
+            //WeaponAttackPower = 0;
         }
 
 
 
         // Member Methods (CAN DO)
-        public void Equip()
+        public void Equip(Weapon weapon)
         {
-            weapon =  new Weapon(0, "");
+            this.weapon = weapon;
+
         }
 
         // a robot attacks

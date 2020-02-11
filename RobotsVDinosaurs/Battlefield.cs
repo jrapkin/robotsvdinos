@@ -11,26 +11,25 @@ namespace RobotsVDinosaurs
 
         //member Variables AKA Class Properties (HAS A)
         public List<Weapon> BattlefieldWeapons;
-        public Robot Robot;
         public Weapon Weapon;
         public Fleet Fleet;
-        public Herd HerdOfDinosaurs;
-        public Game Game;
+        public Herd Herd;
+        // public Game Game;
 
         // Constructor (SPAWNER)
         public Battlefield()
         {
             BattlefieldWeapons = new List<Weapon>();
             Fleet = new Fleet();
-            HerdOfDinosaurs = new Herd();
-            Game = new Game();
+            Herd = new Herd();
+            // Game = new Game();
         }
         // Member Methods (CAN DO)
         public void RobotAttackTurn()
         {
             for (int i = 0; i < (Fleet.FleetOfRobots.Count); i++)
             {
-                string userInput = Game.TakeUserInput();//this else statement will skip a turn
+                string userInput = TakeUserInput();//this else statement will skip a turn
                 int attacker = 0;
                 if (Fleet.FleetOfRobots[i].Health >= 0)
                 {
@@ -43,9 +42,9 @@ namespace RobotsVDinosaurs
                         int attackedParty = 0;
                         int damageDealt = 0;
                         SearchForWeapon();
-                        damageDealt = Game.CalculateAttackDamage(Fleet.FleetOfRobots[attackingParty].AttackPower, Fleet.FleetOfRobots[attackingParty].weapon.AttackPower);
-                        Game.DealAttackDamage(attacker, attackedParty, damageDealt);
-                        Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} dealt {damageDealt} to {HerdOfDinosaurs.HerdOfDinosaurs[0].Name}.");
+                        damageDealt = CalculateAttackDamage(Fleet.FleetOfRobots[attackingParty].AttackPower, Fleet.FleetOfRobots[attackingParty].weapon.AttackPower);
+                        DealAttackDamage(attacker, attackedParty, damageDealt);
+                        Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} dealt {damageDealt} to {Herd.HerdOfDinosaurs[0].Name}.");
                         break;
                     }
                     else if (userInput == "retreat")
@@ -66,13 +65,20 @@ namespace RobotsVDinosaurs
 
             }
         }
+        public string TakeUserInput()
+        {
+            string userInput = Console.ReadLine();
+
+            return userInput;
+        }
+
 
         public void DinosaurAttackTurn()
         {
-            for (int i = 0; i < (HerdOfDinosaurs.HerdOfDinosaurs.Count); i++)
+            for (int i = 0; i < (Herd.HerdOfDinosaurs.Count); i++)
             {
-                string userInput = Game.TakeUserInput();
-                if (HerdOfDinosaurs.HerdOfDinosaurs[i].Health >= 0)
+                string userInput = TakeUserInput();
+                if (Herd.HerdOfDinosaurs[i].Health >= 0)
                 {
                     //dinosaur's turn to attack
 
@@ -82,8 +88,8 @@ namespace RobotsVDinosaurs
                         int attackingParty = 0;
                         int attackedParty = 0;
                         int damageDealt = 0;
-                        damageDealt = Game.CalculateAttackDamage(HerdOfDinosaurs.HerdOfDinosaurs[attackingParty].AttackPower, HerdOfDinosaurs.HerdOfDinosaurs[attackingParty].AttackPower);
-                        Game.DealAttackDamage(attacker, attackedParty, damageDealt);
+                        damageDealt = CalculateAttackDamage(Herd.HerdOfDinosaurs[attackingParty].AttackPower, Herd.HerdOfDinosaurs[attackingParty].AttackPower);
+                        DealAttackDamage(attacker, attackedParty, damageDealt);
                         Console.WriteLine($"you dealt {damageDealt} to {Fleet.FleetOfRobots[0].Name}.");
                         break;
                     }
@@ -99,7 +105,7 @@ namespace RobotsVDinosaurs
                 }
                 else
                 {
-                    HerdOfDinosaurs.HerdOfDinosaurs.RemoveAt(i);
+                    Herd.HerdOfDinosaurs.RemoveAt(i);
                 }
 
             }
@@ -120,7 +126,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType} .");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                   //      BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     case "laser gun":
@@ -128,7 +134,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType}.");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                         //      BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     case "Plasma Sword":
@@ -136,7 +142,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType}.");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                         //    BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     case "plasma sword":
@@ -144,7 +150,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType}.");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                         //   BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     case "Plasma Cannon":
@@ -152,7 +158,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType}.");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                         // BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     case "plasma cannon":
@@ -160,7 +166,7 @@ namespace RobotsVDinosaurs
                         Console.WriteLine($"{Fleet.FleetOfRobots[0].Name} picked up a {Weapon.WeaponType}.");
                         Console.WriteLine($"The {userInput} has a attack power of {Weapon.AttackPower} .");
                         // BattlefieldWeapons.Add(Weapon);
-                        Fleet.FleetOfRobots[0].Equip();
+                        Fleet.FleetOfRobots[0].Equip(Weapon);
                         userInputCheck = !userInputCheck;
                         break;
                     default:
@@ -173,6 +179,29 @@ namespace RobotsVDinosaurs
             while (userInputCheck == true);
            
         }
+        public int CalculateAttackDamage(int attackersAttackPower, int weaponsAttackPower)
+        {
+            int totalAttackPower = 0;
+            totalAttackPower += attackersAttackPower + weaponsAttackPower;
+
+            return totalAttackPower;
+        }
+        public void DealAttackDamage(int attackerCheck, int attackedParty, int damageDealt)
+        {
+
+            if (attackerCheck == 0)
+            {
+                Herd.HerdOfDinosaurs[attackedParty].Health -= damageDealt;
+
+            }
+            else if (attackerCheck == 1)
+            {
+                Fleet.FleetOfRobots[attackedParty].Health -= damageDealt;
+            }
+
+
+        }
+
 
 
 

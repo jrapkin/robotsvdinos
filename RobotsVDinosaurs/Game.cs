@@ -8,17 +8,18 @@ namespace RobotsVDinosaurs
 {
     class Game
     {
-        Robot Robot;
         Battlefield Battlefield;
         Weapon Weapon;
-        Fleet Fleet;
-        Herd Herd;
+        
         //Where I want to run Robots V Dinosaurs 
         /// <summary>
         /// This is where core of game logic will be held
         /// </summary>
         /// 
-
+        public Game()
+        {
+            Battlefield = new Battlefield();
+        }
 
         public void RunTheGame()
         {
@@ -43,9 +44,6 @@ namespace RobotsVDinosaurs
 
             NewGame();
 
-            // Attack (damage, stamina cost)
-
-            // Loop Itteration End
 
             //quit game
 
@@ -66,20 +64,13 @@ namespace RobotsVDinosaurs
         }
         // read user input
 
-        public string TakeUserInput()
-        {
-            string userInput = Console.ReadLine();
-
-            return userInput;
-        }
-
         private void NewGame()
         {
             bool newGameCheck = false;
 
             do
             {
-                string userInput = TakeUserInput();
+                string userInput = Battlefield.TakeUserInput();
 
                 switch (userInput)
                 {
@@ -127,8 +118,6 @@ namespace RobotsVDinosaurs
         private void InitializeBattlefield()
         {
             Battlefield = new Battlefield();
-            Fleet = new Fleet();
-            Herd = new Herd();
         }
 
         //Set stage/ paint picture
@@ -143,17 +132,18 @@ namespace RobotsVDinosaurs
         public void BattleEngine()
         {
 
-            while (Fleet.FleetOfRobots.Count != 0 && Herd.HerdOfDinosaurs.Count != 0)
+            while (Battlefield.Fleet.FleetOfRobots.Count != 0 && Battlefield.Herd.HerdOfDinosaurs.Count != 0)
             {
 
                 Console.WriteLine("The robots have a chance to act! Will they attack or retreat?");
                 Battlefield.RobotAttackTurn();
-                if (Fleet.FleetOfRobots.Count != 0 && Herd.HerdOfDinosaurs.Count != 0)
+                if (Battlefield.Fleet.FleetOfRobots.Count != 0 && Battlefield.Herd.HerdOfDinosaurs.Count != 0)
                 {
+                    
                     Console.WriteLine("The dinosaurs have a chance to act! Will they attack or retreat?");
                     Battlefield.DinosaurAttackTurn();
                 }
-                if (Fleet.FleetOfRobots.Count == 0)
+                if (Battlefield.Fleet.FleetOfRobots.Count == 0)
                     
                 { 
                     string winningMobType = "dinosaurs";
@@ -161,7 +151,7 @@ namespace RobotsVDinosaurs
                     EndGameMessage(winningMobType, losingMobType);
                     
                 }
-                else if (Herd.HerdOfDinosaurs.Count == 0)
+                else if (Battlefield.Herd.HerdOfDinosaurs.Count == 0)
                 {
                     string winningMobType = "robots";
                     string losingMobType = "dinosaurs";
@@ -171,29 +161,6 @@ namespace RobotsVDinosaurs
         }
 
 
-        public int CalculateAttackDamage(int attackersAttackPower, int weaponsAttackPower)
-        {
-            int totalAttackPower = 0;
-            totalAttackPower += attackersAttackPower + weaponsAttackPower;
-
-            return totalAttackPower;
-        }        
-        public void DealAttackDamage(int attackerCheck, int attackedParty, int damageDealt)
-        {
-
-            if (attackerCheck == 0)
-            {
-                Herd.HerdOfDinosaurs[attackedParty].Health -= damageDealt;
-
-            }
-            else if (attackerCheck == 1)
-            {
-                Fleet.FleetOfRobots[attackedParty].Health -= damageDealt;
-            }
-            
-
-        }
-     
      
         private void EndGameMessage(string winningMobType, string losingMobType)
         {
